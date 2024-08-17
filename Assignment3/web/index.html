@@ -1,0 +1,44 @@
+<html>
+<head>
+<title>AJAX Example 1</title>
+<script type="text/javascript">
+var ajaxreq;
+var ename;
+function validate(){
+ename=document.getElementById("empname").value;
+if(ename==="")
+    return false;
+return true;
+}
+function getdata()
+{
+
+if(!validate()){
+    alert("Please input name of employee");
+    return;
+}
+ajaxreq=new XMLHttpRequest();
+ajaxreq.onreadystatechange=processresponse;
+var reqstr="getsal.jsp?name="+ename;
+ajaxreq.open("GET",reqstr,true);
+ajaxreq.send(null);
+}
+function processresponse()
+{
+
+if(ajaxreq.readyState===4)
+{
+var sp1=document.getElementById("data");
+sp1.innerHTML=ajaxreq.responseText;
+}
+}
+</script>
+</head>
+<body bgcolor="#ff8888">
+<center>
+<b>Enter employee name:</b><input type="text" id="empname" ><br>
+<input type="button" value="Show Salary" onclick="getdata()"><br>
+<span id="data"></span>
+</center>
+</body>
+</html>

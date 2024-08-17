@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>J Querry Demo</title>
+<script src ="jquery.js">
+</script>
+<script type= "text/javascript">
+
+$(document).ready(function process()
+{
+if($("div").is(:"hidden"))
+$("div").slideDown("slow",function(){
+$("a").text("Hide It");
+});
+else{
+$("div").slideUp("slow", function()
+{
+$("a").text("see More");
+});
+}
+});
+</script>
+</head>
+<body>
+<div>Hii<br>
+hello<br>
+SQL<br>
+.net<br>
+</div>
+<a onclick ="process()" href = "#">See More...</a>
+</body>
+</html>

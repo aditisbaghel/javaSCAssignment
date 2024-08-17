@@ -1,0 +1,30 @@
+<html>
+<head>
+<title>Jquerry Demo</title>
+<style type = "text/css">
+#div1{
+text-align:center;
+background-color:#89BC38;
+display:none;
+padding:50px;
+}
+</style>
+<script type = "text/javascript" src = "jquerry.js">
+</script>
+<script type = "text/javascript">
+$(document).ready(function()
+{$("#b1").click(function(){
+ $("#div1").show(2000);
+});
+$("#b2").click(function(){
+ $("#div1").hide(2000);
+});
+});
+</script>
+</head>
+<body>
+<input type = "button" id="b1" value = "show div">
+<input type = "button" id="b2" value = "hide div">
+<div id = "div1">Hello, World</div>
+</body>
+</html>

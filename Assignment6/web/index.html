@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>AJAX Example 1</title>
+<script type="text/javascript">
+var ajaxreq;
+var uname;
+function validate(){
+uid=document.getElementById("uid").value;
+uname=document.getElementById("uname").value;
+pwd=document.getElementById("pwd").value;
+if(uname===""||uid===""||pwd==="")
+    return false;
+return true;
+}
+function getdata()
+{
+
+if(!validate()){
+    alert("Please input in the textboxes");
+    return;
+}
+ajaxreq=new XMLHttpRequest();
+ajaxreq.onreadystatechange=processresponse;
+ajaxreq.open("POST","registration.jsp",true);
+ajaxreq.setRequestHeader("content-type","application/x-www-form-urlencoded");
+ajaxreq.send("uid="+uid,"uname="+uname,"pwd="+pwd);
+}
+function processresponse()
+{
+
+if(ajaxreq.readyState===4)
+{
+var sp1=document.getElementById("data");
+ans=ajaxreq.responseText;
+if(ans.trim()==="pass"){
+    
+      sp1.innerHTML="Welcome"+uname;
+      sp1.style.color="green";
+}
+	
+else 
+{
+        sp1.innerHTML="Resister Again With Different User-Id";
+        sp1.style.color="red";
+        
+}
+}
+}
+</script>
+</head>
+<body bgcolor="#ff8888">
+<center>
+    <table >
+        <tr><th>Enter User-Id:</th><td><input type="text" id="uid"  ></td></tr>
+        <tr><th>Enter Password:</th><td><input type="password" id="pwd"  ></td></tr>
+        <tr><th>Enter UserName:</th><td><input type="text" id="uname"  ></td></tr>
+    </table><br>
+<input type="button" value="Register" onclick="getdata()"><br>
+<div id="data"></div>
+</center>
+</body>
+</html>

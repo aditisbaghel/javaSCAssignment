@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>AJAX Example 2</title>
+<script type="text/javascript">
+var ajaxreq;
+var ename;
+function validate(){
+ename=document.getElementById("username").value;
+if(ename=="")
+    return false;
+return true;
+}
+function check()
+{
+if(!validate()){
+    alert("Please input username");
+    return;
+}
+ajaxreq=new XMLHttpRequest();
+ajaxreq.onreadystatechange=processresponse;
+var uname=document.getElementById("username").value;
+var reqstr="index.jsp?username="+uname;
+ajaxreq.open("GET",reqstr,true);
+ajaxreq.send(null);
+
+}
+function processresponse()
+{
+
+if(ajaxreq.readyState==4)
+{
+var sp1=document.getElementById("result");
+var ans=ajaxreq.responseText;
+
+if(ans.trim()=="pass"){
+    
+      sp1.innerHTML="Username available";
+      sp1.style.color="green";
+}
+	
+else
+{
+        sp1.innerHTML="Username not available";
+        sp1.style.color="red";
+	
+}
+
+}
+}
+</script>
+</head>
+<body >
+<center>
+<b>Enter Desired Username:</b><input type="text" id="username"  onblur="check()"><span id="result">
+</center>
+</body>
+</html>
